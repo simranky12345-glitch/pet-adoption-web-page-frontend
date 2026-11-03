@@ -1,21 +1,3 @@
-const navbar = document.querySelector(".navbar");
-
-window.addEventListener("scroll", () => {
-
-    if (window.scrollY > 50) {
-
-        navbar.style.background = "rgba(255,255,255,0.95)";
-        navbar.style.boxShadow = "0 5px 20px rgba(0,0,0,.2)";
-
-    } else {
-
-        navbar.style.background = "rgba(255,255,255,.25)";
-        navbar.style.boxShadow = "0 5px 20px rgba(0,0,0,.1)";
-
-    }
-
-});
-
 
 const revealElements = document.querySelectorAll(
     ".card,.pet-card,.step,.box"
@@ -114,46 +96,6 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
 });
 
 
-const form = document.querySelector("form");
-
-if (form) {
-
-    form.addEventListener("submit", (e) => {
-
-        e.preventDefault();
-
-        const inputs = form.querySelectorAll("input,textarea");
-
-        let valid = true;
-
-        inputs.forEach(input => {
-
-            if (input.value.trim() == "") {
-
-                valid = false;
-
-                input.style.border = "2px solid red";
-
-            } else {
-
-                input.style.border = "2px solid #4CAF50";
-
-            }
-
-        });
-
-        if (valid) {
-
-            alert("✅ Thank you! Your message has been sent successfully.");
-
-            form.reset();
-
-        }
-
-    });
-
-}
-
 const topBtn = document.createElement("button");
 
 topBtn.innerHTML = "⬆";
@@ -205,45 +147,6 @@ setTimeout(() => {
 
 }, 1200);
 
-
-const darkBtn = document.createElement("button");
-
-darkBtn.innerHTML = "🌙";
-
-document.body.appendChild(darkBtn);
-
-darkBtn.style.position = "fixed";
-darkBtn.style.left = "25px";
-darkBtn.style.bottom = "25px";
-darkBtn.style.padding = "15px";
-darkBtn.style.border = "none";
-darkBtn.style.borderRadius = "50%";
-darkBtn.style.cursor = "pointer";
-darkBtn.style.fontSize = "20px";
-darkBtn.style.background = "#222";
-darkBtn.style.color = "white";
-
-let dark = false;
-
-darkBtn.onclick = () => {
-
-    dark = !dark;
-
-    if (dark) {
-
-        document.body.style.background = "#1b1b1b";
-        document.body.style.color = "white";
-        darkBtn.innerHTML = "☀";
-
-    } else {
-
-        document.body.style.background = "#f8fbff";
-        document.body.style.color = "#333";
-        darkBtn.innerHTML = "🌙";
-
-    }
-
-};
 
 document.querySelectorAll("button").forEach(btn => {
 

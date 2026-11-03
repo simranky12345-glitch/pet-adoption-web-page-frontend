@@ -44,15 +44,16 @@
 
             <div class="nav-buttons">
 
-                <a href="login.html" class="login-btn">
+                <a href="login.php" class="login-btn">
                     <i class="fa-solid fa-right-to-bracket"></i>
                     Login
                 </a>
 
-                <a href="register.html" class="register-btn">
+                <a href="register.php" class="register-btn">
                     <i class="fa-solid fa-user-plus"></i>
                     Register
                 </a>
+                <a href="regdash.php" class="dashboard-btn">📈Dashboard</a>
 
             </div>
 
@@ -296,15 +297,15 @@
 
         <h2>Contact Us</h2>
 
-        <form>
+        <form action="contact.php" method="POST">
 
-            <input type="text" placeholder="Your Name">
+            <input type="text" name="name" placeholder="Your Name">
 
-            <input type="email" placeholder="Email">
+            <input type="email" name="email" placeholder="Email">
 
-            <input type="text" placeholder="Phone">
+            <input type="text" name="phone" placeholder="Phone">
 
-            <textarea rows="6" placeholder="Your Message"></textarea>
+            <textarea rows="6" name="massege" placeholder="Your Message"></textarea>
 
             <button>Send Message</button>
 

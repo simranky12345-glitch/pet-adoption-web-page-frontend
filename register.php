@@ -1,7 +1,42 @@
+<?php
 
+$server = "localhost";
+$username = "root";
+$password = "";
+$dbname = "adoption";
+
+
+$con = mysqli_connect($server, $username, $password, $dbname);
+
+if (!$con) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $phone = $_POST['phone'];
+    $date = $_POST['date'];
+    $gender = $_POST['gender'];
+    $password = $_POST['password'];
+ 
+    $sql = "INSERT INTO pet1 (Name, email, phone, Date, Gender, Password) VALUES ('$name', '$email', '$phone', '$date', '$gender', '$password')";
+
+    if ($con->query($sql) === true) {
+        header("Location: login.php");
+        exit();
+    } else {
+        echo "Error: " . $sql . "<br>" . $con->error;
+    }
+
+} 
+$con->close();
+
+?>
 <!DOCTYPE html>
 <html lang="en">
-
+ 
 <head>
 
 <meta charset="UTF-8">
@@ -45,7 +80,7 @@ Join thousands of happy pet lovers and begin your adoption journey today.
 
 <div class="right">
 
-<form id="registerForm">
+<form id="registerForm" action="register.php" method="post">
 
 <h2>Registration</h2>
 
@@ -53,11 +88,7 @@ Join thousands of happy pet lovers and begin your adoption journey today.
 
 <i class="fa-solid fa-user"></i>
 
-<input
-type="text"
-id="name"
-placeholder="Full Name"
-required>
+<input type="text" id="name" name="name" placeholder="Full Name" required>
 
 </div>
 
@@ -66,10 +97,7 @@ required>
 <i class="fa-solid fa-envelope"></i>
 
 <input
-type="email"
-id="email"
-placeholder="Email Address"
-required>
+type="email" id="email" name="email" placeholder="Email Address" required>
 
 </div>
 
@@ -78,10 +106,7 @@ required>
 <i class="fa-solid fa-phone"></i>
 
 <input
-type="tel"
-id="phone"
-placeholder="Phone Number"
-required>
+type="tel" id="phone" name="phone" placeholder="Phone Number" required>
 
 </div>
 
@@ -89,9 +114,7 @@ required>
 
 <i class="fa-solid fa-calendar"></i>
 
-<input
-type="date"
-required>
+<input type="date" name="date" required>
 
 </div>
 
@@ -99,7 +122,7 @@ required>
 
 <label>
 
-<input type="radio" name="gender" required>
+<input type="radio" name="gender"  required>
 
 Male
 
@@ -128,10 +151,7 @@ Other
 <i class="fa-solid fa-lock"></i>
 
 <input
-type="password"
-id="password"
-placeholder="Password"
-required>
+type="password" id="password" name="password" placeholder="Password" required>
 
 <span class="togglePassword">
 
@@ -145,11 +165,7 @@ required>
 
 <i class="fa-solid fa-lock"></i>
 
-<input
-type="password"
-id="confirmPassword"
-placeholder="Confirm Password"
-required>
+<input type="password" id="confirmPassword" name="confirm Password" placeholder="Confirm Password" required>
 
 </div>
 
@@ -179,107 +195,14 @@ Create Account
 
 Already have an account?
 
-<a href="login.html">
-
-Login Here
-
-</a>
-
+<a href="login.php">Login Here</a>
 </p>
-
-<a href="index.html" class="home">
-
+<a href="index.php" class="home">
 <i class="fa-solid fa-house"></i>
-
 Back to Home
-
 </a>
-
 </form>
-
 </div>
-
 </div>
-
-<script>
-
-const password=document.getElementById("password");
-
-const confirmPassword=document.getElementById("confirmPassword");
-
-const toggle=document.querySelector(".togglePassword");
-
-const bar=document.getElementById("strengthBar");
-
-toggle.onclick=()=>{
-
-if(password.type==="password"){
-
-password.type="text";
-
-toggle.innerHTML='<i class="fa-solid fa-eye-slash"></i>';
-
-}else{
-
-password.type="password";
-
-toggle.innerHTML='<i class="fa-solid fa-eye"></i>';
-
-}
-
-}
-
-password.addEventListener("keyup",()=>{
-
-let value=password.value.length;
-
-if(value<5){
-
-bar.style.width="30%";
-
-bar.style.background="red";
-
-}
-
-else if(value<8){
-
-bar.style.width="60%";
-
-bar.style.background="orange";
-
-}
-
-else{
-
-bar.style.width="100%";
-
-bar.style.background="green";
-
-}
-
-});
-
-document.getElementById("registerForm").onsubmit=function(e){
-
-e.preventDefault();
-
-if(password.value!==confirmPassword.value){
-
-alert("Passwords do not match!");
-
-return;
-
-}
-
-alert("🎉 Registration Successful! Welcome to PetAdopt ❤️");
-
-window.location="login.html";
-
-}
-
-</script>
-
 </body>
-
 </html>
-

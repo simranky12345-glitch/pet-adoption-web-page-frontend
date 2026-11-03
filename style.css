@@ -74,7 +74,12 @@ header{
     background:blue;
 }
 
+.dashboard-btn{
+    background:rgb(19, 4, 222);
+}
+
 .login-btn:hover,
+.dashboard-btn,
 .register-btn:hover{
     opacity:0.8;
 }
